@@ -8,15 +8,24 @@ version := "$version$"
 
 scalaVersion := "2.11.7"
 
-persistLauncher := true
+scalaJSStage in Global := FastOptStage
 
-persistLauncher in Test := false
+//persistLauncher := true
+
+//persistLauncher in Test := false
 
 scalacOptions ++= Seq("-deprecation", "-feature", "-Xlint")
 
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
-jsDependencies in Test += RuntimeDOM
+//jsDependencies += RuntimeDOM
+//jsDependencies in Test += RuntimeDOM
+
+//skip in packageJSDependencies := false
+
+libraryDependencies += "com.lihaoyi" %%% "utest" % "0.3.0" % "test"
+
+testFrameworks += new TestFramework("utest.runner.Framework")
 
 libraryDependencies ++= Seq(
   "be.doeraene" %%% "scalajs-jquery" % "0.8.1",
